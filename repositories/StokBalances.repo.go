@@ -12,7 +12,6 @@ type StokBalancesRepository interface {
 	GetBarangWithStok(locationId string) ([]dto.GetBarangStokDTO, error)
 	CreateBarangWithStok(data models.StokBalances) (models.StokBalances, error)
 	FindByID(id string) (*models.StokBalances, error)
-	FindByBarangAndLokasi(barangID, lokasiID string) (*models.StokBalances, error)
 	PatchStokBalance(id string, stokBalance int) error
 	PatchStokOpname(id string, stokOpname int) error
 	IsActiveStok(id string, status bool) error
@@ -61,24 +60,6 @@ func (r *ImplStokBalancesRepository) FindByID(id string) (*models.StokBalances, 
 	err := r.db.
 		Table("stok_balances").
 		Where("id = ?", id).
-		First(&stok).Error
-
-	if err != nil {
-		if errors.Is(err, gorm.ErrRecordNotFound) {
-			return nil, gorm.ErrRecordNotFound
-		}
-		return nil, err
-	}
-
-	return &stok, nil
-}
-
-func (r *ImplStokBalancesRepository) FindByBarangAndLokasi(barangID, lokasiID string) (*models.StokBalances, error) {
-	var stok models.StokBalances
-
-	err := r.db.
-		Table("stok_balances").
-		Where("barang_id = ? AND lokasi_id = ?", barangID, lokasiID).
 		First(&stok).Error
 
 	if err != nil {
