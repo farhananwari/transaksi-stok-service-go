@@ -7,7 +7,7 @@ type StokOpnameAdjustment struct {
 	StokOpnameID string    `gorm:"type:uuid;" json:"stok_opname_id"`
 	AdjDate      time.Time `gorm:"type:date;" json:"adj_date"`
 	BarangID     string    `gorm:"type:uuid;" json:"barang_id"`
-	LocationID   string    `gorm:"type:uuid;" json:"lokasi_id"`
+	LokasiID     string    `gorm:"type:uuid;" json:"lokasi_id"`
 	QtyBefore    int       `gorm:"type:int;" json:"qty_before"`
 	QtyAfter     int       `gorm:"type:int;" json:"qty_after"`
 	AdjQty       int       `gorm:"type:int;" json:"adj_qty"`

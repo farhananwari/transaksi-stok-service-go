@@ -23,7 +23,7 @@ func main() {
 	}
 	defer database.Close()
 
-	log.Println("Starting auth-service-go...")
+	log.Println("Starting stok-barang-service-go...")
 
 	// Initialize Gin router
 	router := gin.Default()

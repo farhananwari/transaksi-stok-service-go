@@ -13,7 +13,6 @@ type StokBalancesRepository interface {
 	CreateBarangWithStok(data models.StokBalances) (models.StokBalances, error)
 	FindByID(id string) (*models.StokBalances, error)
 	PatchStokBalance(id string, stokBalance int) error
-	PatchStokOpname(id string, stokOpname int) error
 	IsActiveStok(id string, status bool) error
 }
 
@@ -77,19 +76,6 @@ func (r *ImplStokBalancesRepository) PatchStokBalance(id string, stokBalance int
 		Table("stok_balances").
 		Where("id = ?", id).
 		Update("qty_balance", stokBalance).Error
-
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (r *ImplStokBalancesRepository) PatchStokOpname(id string, stokOpname int) error {
-	err := r.db.
-		Table("stok_balances").
-		Where("id = ?", id).
-		Update("qty_opname", stokOpname).Error
 
 	if err != nil {
 		return err
