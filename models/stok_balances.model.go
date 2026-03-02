@@ -8,6 +8,7 @@ type StokBalances struct {
 	LokasiID   string    `gorm:"type:uuid;" json:"lokasi_id"`
 	QtyBalance int       `gorm:"type:int;" json:"qty_balance"`
 	IsActive   bool      `gorm:"type:bool;" json:"isActive"`
+	CreatedBy  string    `gorm:"type:uuid;" json:"created_by"`
 	CreatedAt  time.Time `gorm:"autoCreateTime" json:"created_at"`
 	UpdatedAt  time.Time `gorm:"autoUpdateTime" json:"updated_at"`
 }

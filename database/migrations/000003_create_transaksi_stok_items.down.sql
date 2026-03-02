@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS transaksi_stok_items;

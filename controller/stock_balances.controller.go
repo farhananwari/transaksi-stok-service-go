@@ -55,3 +55,23 @@ func (c *ImplStokBalancesController) CreateStokBalance(ctx *gin.Context) {
 
 	ctx.JSON(http.StatusOK, result)
 }
+
+func (c *ImplStokBalancesController) PatchStokBalance(ctx *gin.Context) {
+	id := ctx.Param("id")
+
+	var input struct {
+		QtyBalance int `json:"qty_balance"`
+	}
+
+	if err := ctx.ShouldBindJSON(&input); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	if err := c.service.UpdateStokBalance(id, input.QtyBalance); err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	ctx.JSON(http.StatusOK, gin.H{"message": "stok balance updated successfully"})
+}

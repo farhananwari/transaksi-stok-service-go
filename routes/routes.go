@@ -43,5 +43,6 @@ func SetupRoutes(router *gin.Engine) {
 		})
 		v1.GET("/stok-balances/:locationID", stokBalancesRepoController.GetBarangWithStok)
 		v1.POST("/stok-balances", stokBalancesRepoController.CreateStokBalance)
+		v1.PATCH("/stok-balances", stokBalancesRepoController.PatchStokBalance)
 	}
 }

@@ -15,6 +15,7 @@ type StokBalancesService interface {
 type ImplStokBalancesService struct {
 	stokBalancesRepo repositories.StokBalancesRepository
 	masterDataRepo   repositories.MasterDataRepository
+	transaksiStok    repositories.TransaksiStokRepository
 }
 
 func NewStokBalancesService(stokBalancesRepo repositories.StokBalancesRepository, masterDataRepo repositories.MasterDataRepository) StokBalancesService {
@@ -25,6 +26,9 @@ func NewStokBalancesService(stokBalancesRepo repositories.StokBalancesRepository
 }
 
 func (s *ImplStokBalancesService) GetBarangWithStok(locationId string) ([]dto.GetBarangStokDTO, error) {
+	if _, err := s.masterDataRepo.FindLokasi(locationId); err != nil {
+		return []dto.GetBarangStokDTO{}, err
+	}
 	return s.stokBalancesRepo.GetBarangWithStok(locationId)
 }
 
