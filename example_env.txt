@@ -3,7 +3,7 @@ DB_HOST=localhost
 DB_PORT=5432
 DB_USER=root
 DB_PASSWORD=
-DB_NAME=toko_apps
+DB_NAME=sim-toko
 DB_SSL_MODE=disable
 
 # Server Configuration
