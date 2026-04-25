@@ -90,7 +90,7 @@ func (r *ImplTransaksiStokRepository) GetTransaksiStok(locationId string) ([]dto
 func (r *ImplTransaksiStokRepository) CreateTransaksiStok(dto dto.CreateTransaksiStokDTO, items []dto.CreateItemTransaksiStokDTO) error {
 	return r.db.Transaction(func(tx *gorm.DB) error {
 		// 1. Insert transaksi stok
-		transaksi := models.TransaksiStok{
+		transaksi := models.TransaksiStokHeader{
 			ID:               uuid.New().String(),
 			NoTransaksi:      dto.NoTransaksi,
 			TipeTransaksi:    dto.TipeTransaksi,
@@ -115,8 +115,6 @@ func (r *ImplTransaksiStokRepository) CreateTransaksiStok(dto dto.CreateTransaks
 					TrasaksiStokID: transaksi.ID,
 					BarangID:       item.KodeBarang,
 					Jumlah:         item.Qty,
-					Harga:          item.HargaSatuan,
-					SubTotal:       item.TotalHarga,
 				})
 			}
 

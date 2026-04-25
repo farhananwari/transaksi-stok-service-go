@@ -5,6 +5,4 @@ type TransaksiStokItem struct {
 	TrasaksiStokID string `gorm:"type:uuid;" json:"transaksi_stok_id"`
 	BarangID       string `gorm:"type:uuid;" json:"barang_id"`
 	Jumlah         int    `gorm:"type:int;" json:"jumlah"`
-	Harga          int    `gorm:"type:int;" json:"harga"`
-	SubTotal       int    `gorm:"type:int;" json:"sub_total"`
 }
