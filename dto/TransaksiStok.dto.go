@@ -9,7 +9,6 @@ type GetTransaksiStokDTO struct {
 	TanggalTransaksi time.Time `json:"tgl_transaksi"`
 	FromLocationID   string    `json:"from_location_id"`
 	ToLocationID     string    `json:"to_location_id"`
-	Status           string    `json:"status"`
 	Catatan          string    `json:"catatan"`
 	CreatedBy        string    `json:"created_by"`
 	CreatedAt        time.Time `json:"created_at"`

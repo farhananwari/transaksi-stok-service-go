@@ -11,7 +11,6 @@ type TransaksiStokHeader struct {
 	TanggalTransaksi time.Time `gorm:"type:date;not null;" json:"tgl_transaksi"`
 	FromLocationID   string    `gorm:"type:uuid;" json:"from_location_id"`
 	ToLocationID     string    `gorm:"type:uuid;" json:"to_location_id"`
-	Status           string    `gorm:"type:varchar(100);not null;" json:"status"`
 	Catatan          string    `gorm:"type:varchar(255);not null;" json:"catatan"`
 	CreatedBy        string    `gorm:"type:uuid;" json:"created_by"`
 	CreatedAt        time.Time `gorm:"autoCreateTime" json:"created_at"`

@@ -67,7 +67,6 @@ func (r *ImplTransaksiStokRepository) GetTransaksiStok(locationId string) ([]dto
 				TanggalTransaksi: row.TanggalTransaksi,
 				FromLocationID:   row.FromLocationID,
 				ToLocationID:     row.ToLocationID,
-				Status:           row.Status,
 				Catatan:          row.Catatan,
 				CreatedBy:        row.CreatedBy,
 				CreatedAt:        row.CreatedAt,
@@ -97,7 +96,6 @@ func (r *ImplTransaksiStokRepository) CreateTransaksiStok(dto dto.CreateTransaks
 			TanggalTransaksi: dto.TanggalTransaksi,
 			FromLocationID:   dto.FromLocationID,
 			ToLocationID:     dto.ToLocationID,
-			Status:           dto.Status,
 			Catatan:          dto.Catatan,
 			CreatedBy:        dto.CreatedBy,
 		}
