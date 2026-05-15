@@ -9,10 +9,12 @@ type TransaksiStokHeader struct {
 	NoTransaksi      string    `gorm:"type:varchar(100);unique;not null;" json:"no_transaksi"`
 	TipeTransaksi    string    `gorm:"type:varchar(100);not null;" json:"tipe_transaksi"` //example : PENJUALAN, PEMBELIAN, MUTASI, RETUR, RUSAK
 	TanggalTransaksi time.Time `gorm:"type:date;not null;" json:"tgl_transaksi"`
-	FromLocationID   string    `gorm:"type:uuid;" json:"from_location_id"`
-	ToLocationID     string    `gorm:"type:uuid;" json:"to_location_id"`
+	FromLocationID   string    `gorm:"type:uuid;not null;" json:"from_location_id"`
+	ToLocationID     string    `gorm:"type:uuid;not null;" json:"to_location_id"`
+	Status           string    `gorm:"type:varchar(100);not null;" json:"status_transaksi"`
 	Catatan          string    `gorm:"type:varchar(255);not null;" json:"catatan"`
-	CreatedBy        string    `gorm:"type:uuid;" json:"created_by"`
+	CreatedBy        string    `gorm:"type:uuid;not null;" json:"created_by"`
+	ReceivedBy       string    `gorm:"type:uuid;" json:"received_by"`
 	CreatedAt        time.Time `gorm:"autoCreateTime" json:"created_at"`
 	UpdatedAt        time.Time `gorm:"autoUpdateTime" json:"updated_at"`
 }
