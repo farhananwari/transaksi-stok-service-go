@@ -12,7 +12,7 @@ type FakturHeader struct {
 	TipeTransaksi    string    `gorm:"type:varchar(100);not null;" json:"tipe_transaksi"`
 	TanggalTransaksi time.Time `gorm:"type:date;not null;" json:"tgl_transaksi"`
 	LokasiID         uuid.UUID `gorm:"type:uuid;not null;" json:"id_lokasi"`
-	IDMitra          string    `gorm:"type:varchar(100);" json:"id_mitra"`
+	IDKontak         string    `gorm:"type:varchar(100);" json:"id_kontak"`
 	Catatan          string    `gorm:"type:varchar(255);not null;" json:"catatan"`
 	Status           string    `gorm:"type:varchar(100);not null;" json:"status_transaksi"`
 	CreatedBy        string    `gorm:"type:uuid;not null;" json:"created_by"`
