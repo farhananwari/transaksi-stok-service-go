@@ -112,7 +112,7 @@ func (r *ImplTransaksiStokRepository) CreateTransaksiStok(dto dto.CreateTransaks
 					ID:             uuid.New().String(),
 					TrasaksiStokID: transaksi.ID,
 					BarangID:       item.KodeBarang,
-					Jumlah:         item.Qty,
+					Qty:            item.Qty,
 				})
 			}
 
