@@ -45,10 +45,10 @@ func (s *ImplStokBalancesService) CreateStokBalance(data dto.CreateBarangStokDTO
 
 	_, err := s.stokBalancesRepo.CreateBarangWithStok(models.StokBalances{
 
-		BarangID:   data.KodeBarang,
-		LokasiID:   data.LokasiId,
-		QtyBalance: data.QtyBalance,
-		IsActive:   true,
+		BarangID: data.KodeBarang,
+		LokasiID: data.LokasiId,
+		Stok:     data.Stok,
+		IsActive: true,
 	})
 
 	return data, err
@@ -58,5 +58,5 @@ func (s *ImplStokBalancesService) UpdateStokBalance(id string, stokBalance int) 
 	if _, err := s.stokBalancesRepo.FindByID(id); err != nil {
 		return err
 	}
-	return s.stokBalancesRepo.PatchStokBalance(id, stokBalance)
+	return s.stokBalancesRepo.UpdateStokBalance(id, stokBalance)
 }

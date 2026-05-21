@@ -25,6 +25,12 @@ type FakturHeader struct {
 	TotalPajak  int64 `gorm:"type:bigint;default:0" json:"total_pajak"`
 	GrandTotal  int64 `gorm:"type:bigint;default:0" json:"grand_total"`
 
+	MetodeBayar string `gorm:"type:varchar(50);not null" json:"metode_bayar"`
+	Buktibayar  string `gorm:"type:varchar(100)" json:"bukti_bayar"`
+
+	JumlahBayar int64 `gorm:"type:bigint;default:0" json:"jumlah_bayar"`
+	Kembalian   int64 `gorm:"type:bigint;default:0" json:"kembalian"`
+
 	Status string `gorm:"type:varchar(100);not null" json:"status_transaksi"`
 
 	CreatedBy uuid.UUID `gorm:"type:uuid;not null" json:"created_by"`

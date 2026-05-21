@@ -12,7 +12,7 @@ type StokBalancesRepository interface {
 	GetBarangWithStok(locationId string) ([]dto.GetBarangStokDTO, error)
 	CreateBarangWithStok(data models.StokBalances) (models.StokBalances, error)
 	FindByID(id string) (*models.StokBalances, error)
-	PatchStokBalance(id string, stokBalance int) error
+	UpdateStokBalance(id string, stokBalance int) error
 	IsActiveStok(id string, status bool) error
 }
 
@@ -28,15 +28,19 @@ func (r *ImplStokBalancesRepository) GetBarangWithStok(locationId string) ([]dto
 	var result []dto.GetBarangStokDTO
 
 	err := r.db.
-		Table("master_barangs mb").
+		Table("stok_balances sb").
 		Select(`
+			sb.id,
+			mb.id as master_barang_id,
 			mb.kode_barang,
 			mb.nama,
-			sb.qty_system as qty_balances,
-			sb.qty_opname
+			COALESCE(sb.stok, 0) as stok
 		`).
-		Joins("LEFT JOIN stok_balances sb ON sb.barang_id = mb.id").
-		Where("sb.lokasi_id = ?", locationId).
+		Joins(`
+			JOIN master_barang mb 
+			ON mb.id = sb.master_barang_id
+		`).
+		Where("sb.location_id = ?", locationId).
 		Scan(&result).Error
 
 	if err != nil {
@@ -45,7 +49,6 @@ func (r *ImplStokBalancesRepository) GetBarangWithStok(locationId string) ([]dto
 
 	return result, nil
 }
-
 func (r *ImplStokBalancesRepository) CreateBarangWithStok(data models.StokBalances) (models.StokBalances, error) {
 
 	err := r.db.Create(&data).Error
@@ -71,7 +74,7 @@ func (r *ImplStokBalancesRepository) FindByID(id string) (*models.StokBalances, 
 	return &stok, nil
 }
 
-func (r *ImplStokBalancesRepository) PatchStokBalance(id string, stokBalance int) error {
+func (r *ImplStokBalancesRepository) UpdateStokBalance(id string, stokBalance int) error {
 	err := r.db.
 		Table("stok_balances").
 		Where("id = ?", id).
